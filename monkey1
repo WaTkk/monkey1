@@ -1,0 +1,168 @@
+--만든놈: 와특#1868
+local localplr = game.Players.LocalPlayer
+function DeleteGui(CG)
+    for i,v in ipairs(CG.Frame:GetChildren()) do
+        if v:IsA("TextButton") then
+            if v:FindFirstChild("Value") then
+                v.Value.Value = false
+            end
+        end
+    end
+    CG:Destroy()
+end
+local v1E = game.CoreGui:FindFirstChild("SC")
+if v1E then
+    DeleteGui(v1E)
+end
+local v1 = Instance.new("ScreenGui")
+local v2 = Instance.new("Frame")
+local v3 = Instance.new("UICorner")
+local v4 = Instance.new("TextLabel")
+local v5 = Instance.new("UIStroke")
+local v6 = Instance.new("TextButton")
+local v7 = Instance.new("UICorner")
+local v8 = Instance.new("BoolValue")
+local v9 = Instance.new("TextButton")
+local v10 = Instance.new("UICorner")
+local v11 = Instance.new("BoolValue")
+local v12 = Instance.new("TextButton")
+local v13 = Instance.new("UICorner")
+local v14 = Instance.new("BoolValue")
+local v15 = Instance.new("TextButton")
+local v16 = Instance.new("UICorner")
+local v17 = Instance.new("BoolValue")
+local v18 = Instance.new("TextButton")
+local v19 = Instance.new("UICorner")
+local v20 = Instance.new("TextLabel")
+local v21 = Instance.new("UIStroke")
+local v22 = Instance.new("TextLabel")
+v1.Name = "SC"
+v1.Parent = game.CoreGui
+v2.Parent = v1
+v2.Draggable = true
+v2.Active = true
+v2.Size = UDim2.new(0, 350, 0, 450)
+v2.BackgroundColor3 = Color3.new(0,0,0)
+v3.Parent = v2
+v3.CornerRadius = UDim.new(0,25)
+v4.Parent = v2
+v4.Size = UDim2.new(0.1, 0, 0.1, 0)
+v4.Position = UDim2.new(0,15,0,5)
+v4.BackgroundTransparency = 1
+v4.Text = "Monkey Tycoon 스크립트"
+v4.TextColor3 = Color3.new(0,0,0)
+v4.TextSize = 20
+v4.TextXAlignment = Enum.TextXAlignment.Left
+v5.Parent = v4
+v5.Color = Color3.new(1,1,1)
+v5.Thickness = 2
+v6.Parent = v2
+v6.Size = UDim2.new(0,250,0,50)
+v6.Position = UDim2.new(0,20,0.15,0)
+v6.Text = "바나나 자동수확"
+v6.TextSize = 20
+v6.BackgroundColor3 = Color3.new(1,1,1)
+v7.Parent = v6
+v8.Parent = v6
+v9.Parent = v2
+v9.Size = UDim2.new(0,250,0,50)
+v9.Position = UDim2.new(0,20,0.3,0)
+v9.Text = "바나나 자동분해"
+v9.TextSize = 20
+v9.BackgroundColor3 = Color3.new(1,1,1)
+v10.Parent = v9
+v11.Parent = v9
+v12.Parent = v2
+v12.Size = UDim2.new(0,250,0,50)
+v12.Position = UDim2.new(0,20,0.6,0)
+v12.Text = "원숭이 자동구매"
+v12.TextSize = 20
+v12.BackgroundColor3 = Color3.new(1,1,1)
+v13.Parent = v12
+v14.Parent = v12
+v12.Parent = v2
+v15.Parent = v2
+v15.Size = UDim2.new(0,250,0,50)
+v15.Position = UDim2.new(0,20,0.45,0)
+v15.Text = "판매속도 자동구매"
+v15.TextSize = 20
+v15.BackgroundColor3 = Color3.new(1,1,1)
+v16.Parent = v15
+v17.Parent = v15
+v18.Parent = v2
+v18.Position = UDim2.new(0,310,0,13)
+v18.BackgroundColor3 = Color3.new(1,1,1)
+v18.Size = UDim2.new(0,30,0,30)
+v18.Text = "X"
+v19.Parent = v18
+v20.Parent = v2
+v20.Text = "만든놈: 와특#1868"
+v20.TextSize = 15
+v20.Position = UDim2.new(0,260,0,420)
+v21.Parent = v20
+v21.Color = Color3.new(1,1,1)
+v21.Thickness = 2
+v22.Parent = v2
+v22.Text = "Gui 숨기기: 왼쪽 알트키"
+v22.TextSize = 10
+v22.Position = UDim2.new(0,75,0,425)
+v22.TextColor3 = Color3.new(0.5,0.5,0.5)
+function GetCha()
+    return localplr.Character
+end
+v6.MouseButton1Down:Connect(function()
+    v8.Value = not v8.Value
+    if v8.Value then
+        v6.BackgroundColor3 = Color3.new(0,1,0)
+        repeat wait()
+            for i,v in ipairs(workspace.Drops:GetChildren()) do
+                v.Position = GetCha():GetPivot().Position
+            end
+        until not v8.Value
+        v6.BackgroundColor3 = Color3.new(1,1,1)
+    end
+end)
+v9.MouseButton1Down:Connect(function()
+    v11.Value = not v11.Value
+    if v11.Value then
+        v9.BackgroundColor3 = Color3.new(0,1,0)
+        repeat wait()
+            game.ReplicatedStorage.GTycoonClient.Remotes.DepositDrops:FireServer()
+        until not v11.Value
+        v9.BackgroundColor3 = Color3.new(1,1,1)
+    end
+end)
+v12.MouseButton1Down:Connect(function()
+    v14.Value = not v14.Value
+    if v14.Value then
+        v12.BackgroundColor3 = Color3.new(0,1,0)
+        repeat wait()
+           game.ReplicatedStorage.GTycoonClient.Remotes.BuyDropperMax:FireServer();
+        until not v14.Value
+        v12.BackgroundColor3 = Color3.new(1,1,1)
+    end
+end)
+v15.MouseButton1Down:Connect(function()
+    v17.Value = not v17.Value
+    if v17.Value then
+        v15.BackgroundColor3 = Color3.new(0,1,0)
+        repeat wait()
+           game.ReplicatedStorage.GTycoonClient.Remotes.BuySpeed:FireServer(1)
+        until not v17.Value
+        v15.BackgroundColor3 = Color3.new(1,1,1)
+    end
+end)
+v18.MouseButton1Down:Connect(function()
+    DeleteGui(v1)
+end)
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+if input.UserInputType == Enum.UserInputType.Keyboard then
+    if input.KeyCode == Enum.KeyCode.LeftAlt then
+        if v1.Enabled == true then
+        v1.Enabled = false
+        else
+        v1.Enabled = true
+        end
+    end
+end
+end)
